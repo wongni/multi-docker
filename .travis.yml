@@ -19,3 +19,23 @@ after_success:
   - docker push wongni/multi-nginx
   - docker push wongni/multi-server
   - docker push wongni/multi-worker
+
+#   Set the region. The region code can be found by clicking the region in the toolbar next to your username.
+# eg: 'us-east-1'
+
+# app should be set to the EBS Application Name
+# eg: 'multi-docker'
+
+# env should be set to your EBS Environment name.
+# eg: 'MultiDocker-env'
+
+# Set the bucket_name. This can be found by searching for the S3 Storage service. Click the link for the elasticbeanstalk bucket that matches your region code and copy the name.
+
+# eg: 'elasticbeanstalk-us-east-1-923445599289'
+
+# Set the bucket_path to 'docker-multi'
+
+# Set access_key_id to $AWS_ACCESS_KEY
+
+# Set secret_access_key to $AWS_SECRET_KEY
+
