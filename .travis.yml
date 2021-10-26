@@ -1,0 +1,21 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t wongni/react-test -f client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true wongni/react-test npm test
+
+after_success:
+  - docker build -t wongni/multi-client ./client
+  - docker build -t wongni/multi-nginx ./nginx
+  - docker build -t wongni/multi-server ./server
+  - docker build -t wongni/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push wongni/multi-client
+  - docker push wongni/multi-nginx
+  - docker push wongni/multi-server
+  - docker push wongni/multi-worker
